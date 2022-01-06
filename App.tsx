@@ -5,10 +5,11 @@ import WelcomeScreen from './app/screens/WelcomeScreen';
 import SearchByCity from './app/screens/SearchByCity';
 import SearchByCountry from './app/screens/SearchByCountry';
 import PopulationResult from './app/screens/PopulationResult';
+import CountryResult from './app/screens/CountryResult';
 
 
 export default function App() {
   return (
-    <PopulationResult />
+    <CountryResult />
   );
 }
