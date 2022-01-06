@@ -11,9 +11,9 @@ import {
 export default function WelcomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-    <View style={styles.headlineContainer}>
-      <Text style={styles.headline}>CityPop</Text>
-    </View>
+      <View style={styles.headlineContainer}>
+        <Text style={styles.headline}>CityPop</Text>
+      </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>SEARCH BY CITY</Text>
       </TouchableOpacity>

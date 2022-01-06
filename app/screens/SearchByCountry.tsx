@@ -17,24 +17,24 @@ export default function SearchByCity() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <View style={styles.headlineContainer}>
-      <Text style={styles.headline}>CityPop</Text>
-    </View>
-      <TextInput 
-      placeholder='SEARCH BY COUNTRY' 
-      autoCapitalize='characters' 
-      onChangeText={setValue}
-      style={styles.input}
-      />
-      <TouchableOpacity 
-        style={styles.button}
-          onPress={ () => {
-            console.log(inputValue)
-        }}
-      >
-        <Text style={styles.buttonText} >SEARCH BY COUNTRY</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <View style={styles.headlineContainer}>
+        <Text style={styles.headline}>SEARCH BY{"\n"}COUNTRY</Text>
+      </View>
+        <TextInput 
+        placeholder='Enter a country' 
+        autoCapitalize='characters' 
+        onChangeText={setValue}
+        style={styles.input}
+        />
+        <TouchableOpacity 
+          style={styles.button}
+            onPress={ () => {
+              console.log(inputValue)
+          }}
+        >
+          <Text style={styles.buttonText} >SEARCH BY COUNTRY</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
   );
 }
 
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 32,
+    textAlign: 'center',
   },
   headlineContainer: {
     position: 'absolute',
