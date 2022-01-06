@@ -3,9 +3,10 @@ import { StyleSheet, Text, View } from 'react-native'; // Kan eventuellt tas bor
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import SearchByCity from './app/screens/SearchByCity';
+import SearchByCountry from './app/screens/SearchByCountry';
 
 export default function App() {
   return (
-    <SearchByCity />
+    <SearchByCountry />
   );
 }
