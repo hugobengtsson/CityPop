@@ -18,40 +18,17 @@ export default function SearchByCity() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headlineContainer}>
-        <Text style={styles.headline}>SEARCH BY{"\n"}CITY</Text>
+        <Text style={styles.headline}>PARIS</Text>
       </View>
-      <TextInput 
-      placeholder='Enter a city' 
-      autoCapitalize='characters' 
-      onChangeText={setValue}
-      style={styles.input}
-      />
-      <TouchableOpacity 
-        style={styles.button}
-          onPress={ () => {
-            console.log(inputValue)
-        }}
-      >
-        <Text style={styles.buttonText} >SEARCH BY CITY</Text>
-      </TouchableOpacity>
+      <View style={styles.populationDisplay} >
+        <Text style={styles.populationHeadline}>POPULATION</Text>
+        <Text style={styles.populationCount}>2 244 000</Text>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    borderWidth: 1,
-    borderColor: 'black',
-    width: '95%',
-    height: 50,
-    color: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 2,
-  },
-  buttonText: {
-    fontSize: 16,
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -61,17 +38,25 @@ const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 32,
-    textAlign: 'center',
   },
   headlineContainer: {
     position: 'absolute',
     top: 200,
   },
-  input: {
-    height: 50,
+  populationDisplay: {
+    height: 100,
     width: '95%',
     borderWidth: 1,
     borderColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  populationCount: {
+    fontSize: 28,
+  },
+  populationHeadline: {
+    position: 'absolute',
     textAlign: 'center',
+    top: 5,
   }
 });
