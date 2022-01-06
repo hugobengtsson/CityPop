@@ -1,24 +1,38 @@
+
+import React, { useState } from 'react';
 import { 
   StyleSheet, 
   Text, 
   View, 
   SafeAreaView, 
+  TextInput,
   TouchableOpacity, 
   StatusBar, 
   Platform
 } from 'react-native';
 
-export default function WelcomeScreen() {
+export default function SearchByCity() {
+
+  const [inputValue, setValue] = useState('');
+
   return (
     <SafeAreaView style={styles.container}>
     <View style={styles.headlineContainer}>
       <Text style={styles.headline}>CityPop</Text>
     </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>SEARCH BY CITY</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>SEARCH BY COUNTRY</Text>
+      <TextInput 
+      placeholder='SEARCH BY CITY' 
+      autoCapitalize='characters' 
+      onChangeText={setValue}
+      style={styles.input}
+      />
+      <TouchableOpacity 
+        style={styles.button}
+          onPress={ () => {
+            console.log(inputValue)
+        }}
+      >
+        <Text style={styles.buttonText} >SEARCH BY CITY</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -51,5 +65,12 @@ const styles = StyleSheet.create({
   headlineContainer: {
     position: 'absolute',
     top: 200,
+  },
+  input: {
+    height: 50,
+    width: '95%',
+    borderWidth: 1,
+    borderColor: 'black',
+    textAlign: 'center',
   }
 });
