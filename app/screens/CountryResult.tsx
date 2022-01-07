@@ -4,19 +4,15 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  SafeAreaView, 
-  TextInput,
   TouchableOpacity, 
-  StatusBar, 
-  Platform
 } from 'react-native';
 
-export default function SearchByCity() {
+export default function SearchByCity({ route }) {
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headlineContainer}>
-        <Text style={styles.headline}>FRANCE</Text>
+        <Text style={styles.headline}>{route.params.country}</Text>
       </View>
         <TouchableOpacity 
           style={styles.button}
@@ -42,7 +38,7 @@ export default function SearchByCity() {
         >
           <Text style={styles.buttonText} >Lyon</Text>
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
   );
 }
 
@@ -65,7 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 5 : 0,
   },
   headline: {
     fontSize: 32,

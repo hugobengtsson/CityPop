@@ -4,27 +4,22 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  SafeAreaView, 
-  TextInput,
-  TouchableOpacity, 
-  StatusBar, 
-  Platform
 } from 'react-native';
 
-export default function SearchByCity() {
+export default function SearchByCity({ route }) {
 
-  const [inputValue, setValue] = useState('');
+  console.log(route)
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headlineContainer}>
-        <Text style={styles.headline}>PARIS</Text>
+        <Text style={styles.headline}>{route.params.city}</Text>
       </View>
       <View style={styles.populationDisplay} >
         <Text style={styles.populationHeadline}>POPULATION</Text>
         <Text style={styles.populationCount}>2 244 000</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -34,7 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 5 : 0,
   },
   headline: {
     fontSize: 32,
