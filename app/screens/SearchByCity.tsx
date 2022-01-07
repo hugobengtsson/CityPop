@@ -4,19 +4,21 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  SafeAreaView, 
   TextInput,
   TouchableOpacity, 
-  StatusBar, 
-  Platform
 } from 'react-native';
 
-export default function SearchByCity() {
+import getApi from '../functions/functions';
+
+export default function SearchByCity( {navigation} ) {
 
   const [inputValue, setValue] = useState('');
 
+  console.log("hello")
+
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headlineContainer}>
         <Text style={styles.headline}>SEARCH BY{"\n"}CITY</Text>
       </View>
@@ -26,15 +28,12 @@ export default function SearchByCity() {
       onChangeText={setValue}
       style={styles.input}
       />
-      <TouchableOpacity 
-        style={styles.button}
-          onPress={ () => {
-            console.log(inputValue)
-        }}
-      >
+      <TouchableOpacity style={styles.button} onPress={ () => {
+          getApi(inputValue, 'city', navigation)
+      }}>
         <Text style={styles.buttonText} >SEARCH BY CITY</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 5 : 0,
   },
   headline: {
     fontSize: 32,

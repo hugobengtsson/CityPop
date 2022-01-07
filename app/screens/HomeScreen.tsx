@@ -1,26 +1,28 @@
+
 import { 
   StyleSheet, 
   Text, 
   View, 
-  SafeAreaView, 
   TouchableOpacity, 
-  StatusBar, 
-  Platform
 } from 'react-native';
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headlineContainer}>
         <Text style={styles.headline}>CityPop</Text>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={ () => {
+        navigation.navigate('SearchByCity')
+      }}>
         <Text style={styles.buttonText}>SEARCH BY CITY</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={ () => {
+        navigation.navigate('SearchByCountry')
+      }}>
         <Text style={styles.buttonText}>SEARCH BY COUNTRY</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -43,7 +45,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 5 : 0,
   },
   headline: {
     fontSize: 32,
