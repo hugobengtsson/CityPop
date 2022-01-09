@@ -7,7 +7,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function SearchByCity({ navigation, route }) {
+// Set to any or exent to what it actually is
+interface SearchByCityProp {
+  navigation: any;
+  route: any;
+}
+
+export default function SearchByCity({ navigation, route }: SearchByCityProp) {
   return (
     <View style={styles.container}>
       <View style={styles.headlineContainer}>
@@ -16,22 +22,20 @@ export default function SearchByCity({ navigation, route }) {
       <FlatList
         contentContainerStyle={styles.flatList}
         data={route.params.cities}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              style={styles.button}
-              key={item.population}
-              onPress={() => {
-                navigation.navigate("PopulationResult", {
-                  name: item.name,
-                  population: item.population,
-                });
-              }}
-            >
-              <Text style={styles.buttonText}>{item.name}</Text>
-            </TouchableOpacity>
-          );
-        }}
+        keyExtractor={(item, index) => item.name}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("PopulationResult", {
+                name: item.name,
+                population: item.population,
+              });
+            }}
+          >
+            <Text style={styles.buttonText}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
