@@ -10,11 +10,15 @@ import {
 
 import getApi from "../functions/functions";
 
-export default function SearchByCity({ navigation }) {
+// Couldn't find the right prop for navigation and route.
+interface SearchByCityProp {
+  navigation: any;
+}
+
+export default function SearchByCity({ navigation }: SearchByCityProp) {
   const [inputValue, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   return (
     <View style={styles.container}>
       <View style={styles.headlineContainer}>
@@ -36,10 +40,7 @@ export default function SearchByCity({ navigation }) {
               setError("We could not find the city you were looking for.");
             } else {
               setError("");
-              navigation.navigate("PopulationResult", {
-                name: inputValue,
-                population: r.population,
-              });
+              navigation.navigate("PopulationResult", r);
             }
           });
         }}
