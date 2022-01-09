@@ -1,22 +1,55 @@
-export default async function getApi(input, type, navigation) {
+interface CityResponse {
+  adminCode1?: string;
+  adminCodes1?: {
+    ISO3166_2?: string;
+  };
+  adminName1?: string;
+  countryCode?: string;
+  countryId?: string;
+  countryName: string;
+  fcl?: string;
+  fclName?: string;
+  fcode?: string;
+  fcodeName?: string;
+  geonameId?: number;
+  lat?: string;
+  lng?: string;
+  name: string;
+  population: number;
+  toponymName?: string;
+}
+interface City {
+  name: string;
+  population: number;
+}
+
+interface ApiResponse {
+  geonames: CityResponse[];
+}
+
+export default async function getApi(input: string, type: string) {
   if (type === "city") {
     try {
-      let firstResponse = await fetch(
+      let response = await fetch(
         "http://api.geonames.org/searchJSON?username=weknowit&featureClass=P&name=" +
           input
       );
-      let firstResult = await firstResponse.json();
+      let result = (await response.json()) as ApiResponse;
 
-      if (firstResult.geonames[0]) {
-        let city = {};
-
-        city.name = firstResult.geonames[0].name;
-        city.population = firstResult.geonames[0].population;
+      if (result.geonames.length > 0) {
+        let city: City = {
+          name: "",
+          population: 0,
+        };
+        // Future improvement, check if city at index exists. If so add name.
+        city.name = result.geonames[0].name;
+        city.population = result.geonames[0].population;
 
         return city;
       }
+      return "error";
     } catch (err) {
-      console.log(err);
+      return "error";
     }
   } else {
     try {
@@ -26,35 +59,33 @@ export default async function getApi(input, type, navigation) {
       );
       let firstResult = await firstResponse.json();
 
-      let countryCode = firstResult.geonames[0].countryCode;
+      if (firstResult.geonames.length < 1) {
+        return "error";
+      } else {
+        let countryCode = firstResult.geonames[0].countryCode;
 
-      let secondResponse = await fetch(
-        "http://api.geonames.org/searchJSON?username=weknowit&orderby=population&featureClass=P&country=" +
-          countryCode
-      );
-      let secondResult = await secondResponse.json();
+        let secondResponse = await fetch(
+          "http://api.geonames.org/searchJSON?username=weknowit&orderby=population&featureClass=P&country=" +
+            countryCode
+        );
+        let secondResult = await secondResponse.json();
 
-      let cities = secondResult.geonames;
+        let cities = secondResult.geonames;
 
-      var i;
-      let citiesList = [];
+        var i;
+        let citiesList = [];
 
-      for (i = 0; i < 3; i++) {
-        let cityObject = {};
-        cityObject.name = cities[i].name;
-        cityObject.population = cities[i].population;
+        for (i = 0; i < 3; i++) {
+          let cityObject = {};
+          cityObject.name = cities[i].name;
+          cityObject.population = cities[i].population;
 
-        citiesList.push(cityObject);
+          citiesList.push(cityObject);
+        }
+        return citiesList;
       }
-      return citiesList;
     } catch (err) {
-      console.log(err);
+      return "error";
     }
-
-    navigation.navigate("CountryResult", { country: input });
   }
-
-  // Hämta API
-  // set loading till 1
-  // navigationen bör ske från screen då man går från country till populationresult så behöver api:et läsas in direkt på den sidan.
 }

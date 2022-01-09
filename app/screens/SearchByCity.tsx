@@ -13,6 +13,7 @@ import getApi from "../functions/functions";
 export default function SearchByCity({ navigation }) {
   const [inputValue, setValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <View style={styles.container}>
@@ -29,18 +30,23 @@ export default function SearchByCity({ navigation }) {
         style={styles.button}
         onPress={() => {
           setLoading(true);
-          getApi(inputValue, "city", navigation).then((r) => {
+          getApi(inputValue, "city").then((r) => {
             setLoading(false);
-            navigation.navigate("PopulationResult", {
-              name: inputValue,
-              population: r.population,
-            });
+            if (r == "error") {
+              setError("We could not find the city you were looking for.");
+            } else {
+              setError("");
+              navigation.navigate("PopulationResult", {
+                name: inputValue,
+                population: r.population,
+              });
+            }
           });
         }}
       >
         <Text style={styles.buttonText}>SEARCH BY CITY</Text>
       </TouchableOpacity>
-      <Text></Text>
+      <Text>{error}</Text>
       <ActivityIndicator animating={loading} />
     </View>
   );
