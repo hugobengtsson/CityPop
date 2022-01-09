@@ -8,12 +8,15 @@ import {
 } from "react-native";
 
 // Set to any or exent to what it actually is
-interface SearchByCityProp {
+interface CountryResultProp {
   navigation: any;
   route: any;
 }
 
-export default function SearchByCity({ navigation, route }: SearchByCityProp) {
+export default function CountryResult({
+  navigation,
+  route,
+}: CountryResultProp) {
   return (
     <View style={styles.container}>
       <View style={styles.headlineContainer}>

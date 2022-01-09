@@ -10,7 +10,11 @@ import {
 
 import getApi from "../functions/functions";
 
-export default function SearchByCity({ navigation }) {
+interface SearchByCountryProp {
+  navigation: any;
+}
+
+export default function SearchByCountry({ navigation }: SearchByCountryProp) {
   const [inputValue, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

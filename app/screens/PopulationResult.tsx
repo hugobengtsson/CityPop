@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function SearchByCity({ route }) {
+interface PopulationResultProp {
+  route: any;
+}
+
+export default function PopulationResult({ route }: PopulationResultProp) {
   return (
     <View style={styles.container}>
       <View style={styles.headlineContainer}>

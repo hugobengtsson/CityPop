@@ -1,4 +1,4 @@
-interface CityResponse {
+interface SearchResponse {
   adminCode1?: string;
   adminCodes1?: {
     ISO3166_2?: string;
@@ -23,8 +23,12 @@ interface City {
   population: number;
 }
 
+interface CityObject {
+  name: string;
+  population: number;
+}
 interface ApiResponse {
-  geonames: CityResponse[];
+  geonames: SearchResponse[];
 }
 
 export default async function getApi(input: string, type: string) {
@@ -53,22 +57,22 @@ export default async function getApi(input: string, type: string) {
     }
   } else {
     try {
-      let firstResponse = await fetch(
+      let response = await fetch(
         "http://api.geonames.org/searchJSON?username=weknowit&adminCode1=00&name=" +
           input
       );
-      let firstResult = await firstResponse.json();
+      let result = (await response.json()) as ApiResponse;
 
-      if (firstResult.geonames.length < 1) {
+      if (result.geonames.length < 1) {
         return "error";
       } else {
-        let countryCode = firstResult.geonames[0].countryCode;
+        let countryCode = result.geonames[0].countryCode;
 
         let secondResponse = await fetch(
           "http://api.geonames.org/searchJSON?username=weknowit&orderby=population&featureClass=P&country=" +
             countryCode
         );
-        let secondResult = await secondResponse.json();
+        let secondResult = (await secondResponse.json()) as ApiResponse;
 
         let cities = secondResult.geonames;
 
@@ -76,7 +80,10 @@ export default async function getApi(input: string, type: string) {
         let citiesList = [];
 
         for (i = 0; i < 3; i++) {
-          let cityObject = {};
+          let cityObject: CityObject = {
+            name: "",
+            population: 0,
+          };
           cityObject.name = cities[i].name;
           cityObject.population = cities[i].population;
 
