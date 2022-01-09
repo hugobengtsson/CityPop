@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-// Set to any or exent to what it actually is
+// Couldn't find the right prop for navigation and route.
 interface CountryResultProp {
   navigation: any;
   route: any;
@@ -44,6 +44,7 @@ export default function CountryResult({
   );
 }
 
+// Improvement for future development, add a separate stylesheet to avoid redundancy.
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   headlineContainer: {
     position: "absolute",
-    top: 200,
+    top: 150,
     width: "100%",
   },
   flatList: {

@@ -10,6 +10,7 @@ import {
 
 import getApi from "../functions/functions";
 
+// Couldn't find the right prop for navigation and route.
 interface SearchByCountryProp {
   navigation: any;
 }
@@ -61,6 +62,7 @@ export default function SearchByCountry({ navigation }: SearchByCountryProp) {
   );
 }
 
+// Improvement for future development, add a separate stylesheet to avoid redundancy.
 const styles = StyleSheet.create({
   activity: {
     position: "absolute",
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
   },
   headlineContainer: {
     position: "absolute",
-    top: 200,
+    top: 150,
   },
   input: {
     height: 50,

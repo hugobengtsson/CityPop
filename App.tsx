@@ -3,14 +3,16 @@ import {} from "react-native"; // Kan eventuellt tas bort?
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator();
-
 import HomeScreen from "./app/screens/HomeScreen";
 import SearchByCity from "./app/screens/SearchByCity";
 import SearchByCountry from "./app/screens/SearchByCountry";
 import PopulationResult from "./app/screens/PopulationResult";
 import CountryResult from "./app/screens/CountryResult";
 
+const Stack = createNativeStackNavigator();
+
+// Function for rendering the app and letting the user navigate
+// between screens.
 export default function App() {
   return (
     <NavigationContainer>

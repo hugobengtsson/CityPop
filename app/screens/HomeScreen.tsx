@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
+// Couldn't find the right prop for navigation and route.
 interface HomeScreenProp {
   navigation: any;
 }
@@ -30,6 +31,7 @@ export default function WelcomeScreen({ navigation }: HomeScreenProp) {
   );
 }
 
+// Improvement for future development, add a separate stylesheet to avoid redundancy.
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
@@ -55,6 +57,6 @@ const styles = StyleSheet.create({
   },
   headlineContainer: {
     position: "absolute",
-    top: 200,
+    top: 150,
   },
 });

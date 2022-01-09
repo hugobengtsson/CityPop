@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+// Couldn't find the right prop for navigation and route.
 interface PopulationResultProp {
   route: any;
 }
@@ -21,6 +22,7 @@ export default function PopulationResult({ route }: PopulationResultProp) {
   );
 }
 
+// Improvement for future development, add a separate stylesheet to avoid redundancy.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   },
   headlineContainer: {
     position: "absolute",
-    top: 200,
+    top: 150,
   },
   populationDisplay: {
     height: 100,
