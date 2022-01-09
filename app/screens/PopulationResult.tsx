@@ -13,7 +13,9 @@ export default function PopulationResult({ route }: PopulationResultProp) {
       </View>
       <View style={styles.populationDisplay}>
         <Text style={styles.populationHeadline}>POPULATION</Text>
-        <Text style={styles.populationCount}>{route.params.population}</Text>
+        <Text style={styles.populationCount}>
+          {route.params.population.toLocaleString()}
+        </Text>
       </View>
     </View>
   );

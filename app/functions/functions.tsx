@@ -36,7 +36,7 @@ export default async function getApi(input: string, type: string) {
     try {
       let response = await fetch(
         "http://api.geonames.org/searchJSON?username=weknowit&featureClass=P&name=" +
-          input
+          encodeURIComponent(input)
       );
       let result = (await response.json()) as ApiResponse;
 
@@ -59,7 +59,7 @@ export default async function getApi(input: string, type: string) {
     try {
       let response = await fetch(
         "http://api.geonames.org/searchJSON?username=weknowit&adminCode1=00&name=" +
-          input
+          encodeURIComponent(input)
       );
       let result = (await response.json()) as ApiResponse;
 
