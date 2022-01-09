@@ -30,8 +30,11 @@ export default function SearchByCity({ navigation }) {
         onPress={() => {
           setLoading(true);
           getApi(inputValue, "country", navigation).then((r) => {
-            console.log(r);
             setLoading(false);
+            navigation.navigate("CountryResult", {
+              country: inputValue,
+              cities: r,
+            });
           });
         }}
       >

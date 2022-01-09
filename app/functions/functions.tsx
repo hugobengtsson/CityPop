@@ -14,14 +14,10 @@ export default async function getApi(input, type, navigation) {
         city.population = firstResult.geonames[0].population;
 
         return city;
-      } else {
-        return "Error";
       }
     } catch (err) {
       console.log(err);
     }
-
-    // navigation.navigate('PopulationResult', { city: input })
   } else {
     try {
       let firstResponse = await fetch(
