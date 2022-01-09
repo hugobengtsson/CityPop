@@ -9,9 +9,6 @@ const Stack = createNativeStackNavigator();
 
 import HomeScreen from './app/screens/HomeScreen';
 import SearchByCity from './app/screens/SearchByCity';
-
-import getApi from './app/screens/SearchByCity'
-
 import SearchByCountry from './app/screens/SearchByCountry';
 import PopulationResult from './app/screens/PopulationResult';
 import CountryResult from './app/screens/CountryResult';

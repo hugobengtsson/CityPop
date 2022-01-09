@@ -9,7 +9,6 @@ import {
 export default function SearchByCity({ route }) {
 
   console.log(route)
-
   return (
     <View style={styles.container}>
       <View style={styles.headlineContainer}>
