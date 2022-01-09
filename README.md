@@ -1,11 +1,12 @@
-# CityPop
+# Welcome to CityPop-app
 
-// arbetsuppgift för weknowit
+- This app was developed as an assignment for WeKnowIt and my application to their student developer program.
 
-// features
+- With this app you can enter a city to find out what the population of the city is. You can also search for country and recieve the three biggest cities of that country.
 
-// använder detta api:et
+- To run the api you need to download the reposotory and install the dependencies.
+- The project runs with NPM and Expo.
 
-// hur man kör projektet
+- You can easily use a simulator for both iOS and Android.
 
-// improvement remove api-keys from enviroment files
+- I have found a couple of improvements to be done, some of which can be found in the comments.

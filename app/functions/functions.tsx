@@ -40,6 +40,7 @@ export default async function getApi(input: string, type: string) {
       );
       let result = (await response.json()) as ApiResponse;
 
+      // Check for the result. The array needs to be longer than zero to proceed.
       if (result.geonames.length > 0) {
         let city: City = {
           name: "",
@@ -49,6 +50,7 @@ export default async function getApi(input: string, type: string) {
         city.name = result.geonames[0].name;
         city.population = result.geonames[0].population;
 
+        // Returns the city-object, ready to be rendered.
         return city;
       }
       return "error";
@@ -63,11 +65,13 @@ export default async function getApi(input: string, type: string) {
       );
       let result = (await response.json()) as ApiResponse;
 
-      if (result.geonames.length < 1) {
-        return "error";
-      } else {
+      // Check for the result. The array needs to be longer than zero to proceed.
+      if (result.geonames.length > 0) {
         let countryCode = result.geonames[0].countryCode;
 
+        // Second request is for fetching the cities within the country the user searched for.
+        // This also filters the response to only be cities or towns.
+        // Also sorting the response, biggest population first.
         let secondResponse = await fetch(
           "http://api.geonames.org/searchJSON?username=weknowit&orderby=population&featureClass=P&country=" +
             countryCode
@@ -79,6 +83,8 @@ export default async function getApi(input: string, type: string) {
         var i;
         let citiesList = [];
 
+        // Looping over the three first objects returned from the API.
+        // Also builds them into an array with objects.
         for (i = 0; i < 3; i++) {
           let cityObject: CityObject = {
             name: "",
@@ -86,10 +92,11 @@ export default async function getApi(input: string, type: string) {
           };
           cityObject.name = cities[i].name;
           cityObject.population = cities[i].population;
-
           citiesList.push(cityObject);
         }
         return citiesList;
+      } else {
+        return "error";
       }
     } catch (err) {
       return "error";

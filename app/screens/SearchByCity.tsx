@@ -58,6 +58,7 @@ export default function SearchByCity({ navigation }: SearchByCityProp) {
   );
 }
 
+// Improvement for future development, add a separate stylesheet to avoid redundancy.
 const styles = StyleSheet.create({
   activity: {
     position: "absolute",
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
   headlineContainer: {
     position: "absolute",
-    top: 200,
+    top: 150,
   },
   input: {
     height: 50,
