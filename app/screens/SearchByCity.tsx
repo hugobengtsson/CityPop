@@ -48,12 +48,20 @@ export default function SearchByCity({ navigation }: SearchByCityProp) {
         <Text style={styles.buttonText}>SEARCH BY CITY</Text>
       </TouchableOpacity>
       <Text>{error}</Text>
-      <ActivityIndicator animating={loading} />
+      <ActivityIndicator
+        style={styles.activity}
+        size="large"
+        color="#000000"
+        animating={loading}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  activity: {
+    position: "absolute",
+  },
   button: {
     borderWidth: 1,
     borderColor: "black",
