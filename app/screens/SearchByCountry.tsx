@@ -39,6 +39,14 @@ export default function SearchByCountry({ navigation }: SearchByCountryProp) {
             setLoading(false);
             if (r == "error") {
               setError("We could not find the country you were looking for.");
+            } else if (r == "special") {
+              setError(
+                "There seems to be some special characters och numbers in your query. You are only allowed to use letters."
+              );
+            } else if (r == "spaces") {
+              setError(
+                "Please fill out the field above to search for your desired country."
+              );
             } else {
               setError("");
               navigation.navigate("CountryResult", {
@@ -51,7 +59,7 @@ export default function SearchByCountry({ navigation }: SearchByCountryProp) {
       >
         <Text style={styles.buttonText}>SEARCH BY COUNTRY</Text>
       </TouchableOpacity>
-      <Text>{error}</Text>
+      <Text style={styles.errorText}>{error}</Text>
       <ActivityIndicator
         style={styles.activity}
         size="large"
@@ -85,6 +93,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  errorText: {
+    width: "95%",
+    fontSize: 14,
   },
   headline: {
     fontSize: 32,
