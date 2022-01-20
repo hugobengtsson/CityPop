@@ -32,7 +32,13 @@ interface ApiResponse {
 }
 
 export default async function getApi(input: string, type: string) {
-  if (type === "city") {
+  // If statement checks for special characters, empty sting and string with only one blank space.
+  // Second if else checks for more then two consecutive spaces.
+  if (/[123456789!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g.test(input)) {
+    return "special";
+  } else if (/\s{2,}/g.test(input) || input == "" || input == " ") {
+    return "spaces";
+  } else if (type === "city") {
     try {
       let response = await fetch(
         "http://api.geonames.org/searchJSON?username=weknowit&featureClass=P&name=" +
@@ -60,7 +66,7 @@ export default async function getApi(input: string, type: string) {
   } else {
     try {
       let response = await fetch(
-        "http://api.geonames.org/searchJSON?username=weknowit&adminCode1=00&name=" +
+        "http://api.geonames.org/searchJSON?username=weknowit&adminCode1=00&featureClass=A&name=" +
           encodeURIComponent(input)
       );
       let result = (await response.json()) as ApiResponse;
