@@ -41,7 +41,7 @@ export default function SearchByCountry({ navigation }: SearchByCountryProp) {
               setError("We could not find the country you were looking for.");
             } else if (r == "special") {
               setError(
-                "There seems to be some special characters och numbers in your query. You are only allowed to use letters."
+                "There seems to be some special characters or numbers in your query. You are only allowed to use letters."
               );
             } else if (r == "spaces") {
               setError(
